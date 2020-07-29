@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "297560907196",
+    "firebase_url": "https://admob-c6988.firebaseio.com",
+    "project_id": "admob-c6988",
+    "storage_bucket": "admob-c6988.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:297560907196:android:8309d4f4ebc2f9f7ed1fb9",
+        "android_client_info": {
+          "package_name": "godo.CinePrev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "297560907196-ghr9mmvfcajh76giluku83i0v7bqal8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBO_sJD5RUcdgcfDcwM6QV7YylvQyLge6E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "297560907196-ghr9mmvfcajh76giluku83i0v7bqal8n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,10 @@
+It is full for release with ads but new adMob account (habibugodo20), after playstore aproval it has to be submitted as first update
+
+-Added animations into details pages(favorite details, movie details and search deteals)
+-Update into playstore.
+-full ads
+-additional adcolony
+-fix on double back click to close 
+-integrated adcolony,applovin and facebook ads sdk
+-customized homescreen
+-changes on ads placemets
