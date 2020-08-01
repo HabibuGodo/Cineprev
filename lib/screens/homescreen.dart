@@ -1,3 +1,5 @@
+import 'package:CinePrev/services/ads.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
@@ -22,11 +24,18 @@ class _HomeScreenState extends State<HomeScreen> {
   DateTime currentBackPressTime;
 //typeAhead Controller
   TextEditingController _typeAheadController = TextEditingController();
-
+  InterstitialAd _interstitialAd;
   @override
   void initState() {
     super.initState();
+    _interstitialAd = DisplayAds.createInterstitialAd()..load();
     _typeAheadController.clear();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _interstitialAd?.dispose();
   }
 
   @override
@@ -74,6 +83,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 },
                 onSuggestionSelected: (suggestion) {
+                  _interstitialAd.show();
+                  _interstitialAd = DisplayAds.createInterstitialAd()..load();
                   Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => MovieDetails(
                       suggestion,

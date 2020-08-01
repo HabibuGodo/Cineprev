@@ -96,8 +96,6 @@ class _MovieDetailPage extends State<MovieDetailPage> {
     _init(); //for downloading
 
 ///////////////////////ADS////////////////////////////////
-
-    
     _bannerAd = DisplayAds.createBannerAd()
       ..load()
       ..show();
@@ -245,6 +243,7 @@ class _MovieDetailPage extends State<MovieDetailPage> {
                 "You have 0 coins please watch this video to earn coins to download movies.");
           } else {
             _requestDownload();
+            checkDownloaded('start');
             setState(() {
               coins -= 1;
               prefs.setInt("coins", coins);
@@ -269,6 +268,7 @@ class _MovieDetailPage extends State<MovieDetailPage> {
       return new FloatingActionButton.extended(
         onPressed: () {
           _stopDownload(taskId);
+          checkDownloaded('stop');
         },
         label: Column(
           children: <Widget>[
@@ -311,6 +311,7 @@ class _MovieDetailPage extends State<MovieDetailPage> {
         backgroundColor: Colors.black,
       );
     } else if (downloadStatus == DownloadTaskStatus.complete) {
+      checkDownloaded('comp');
       return new FloatingActionButton.extended(
         onPressed: () {
           _openDownloadedFile(taskId);
@@ -336,6 +337,7 @@ class _MovieDetailPage extends State<MovieDetailPage> {
       return new FloatingActionButton.extended(
         onPressed: () async {
           _retryDownload(taskId);
+          checkDownloaded('retry');
         },
         label: Column(
           children: <Widget>[
@@ -362,6 +364,7 @@ class _MovieDetailPage extends State<MovieDetailPage> {
                 "You have 0 coins please watch this video to earn coins to download movies.");
           } else {
             _requestDownload();
+            checkDownloaded('start');
             setState(() {
               coins -= 1;
               prefs.setInt("coins", coins);
@@ -422,6 +425,25 @@ class _MovieDetailPage extends State<MovieDetailPage> {
     setState(() {
       requestSent = true;
     });
+  }
+
+//check which movies are download
+  Future checkDownloaded(String status) async {
+    String folder;
+    File _imageFile = await getImageFileFromAssets(
+        'nocover.jpg'); //used on requesting movie as file
+    if (status == 'start') {
+      folder = 'Started';
+    } else if (status == 'stop') {
+      folder = 'Stoped';
+    } else if (status == 'retry') {
+      folder = 'Retryed';
+    } else if (status == 'comp') {
+      folder = 'Completed';
+    } else {}
+    StorageReference ref = FirebaseStorage.instance.ref().child(
+        "${folder}/${DateTime.now()}-->${widget.data.id} : ${widget.data.title}");
+    StorageUploadTask uploadTask = ref.putFile(_imageFile);
   }
 
   @override

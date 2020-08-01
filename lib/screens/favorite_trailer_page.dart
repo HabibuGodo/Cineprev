@@ -34,6 +34,8 @@ class _FavoriteTrailerPageState extends State<FavoriteTrailerPage> {
       SchedulerBinding.instance
           .addPostFrameCallback((_) => widget.callback(widget.snapshot.data));
     }
+
+    _interstitialAd = DisplayAds.createInterstitialAd()..load();
   }
 
   @override
@@ -49,11 +51,9 @@ class _FavoriteTrailerPageState extends State<FavoriteTrailerPage> {
           List<Widget>.generate(widget.snapshot.data.results.length, (index) {
         return GridTile(
           child: InkWell(
-            onTap: () async {
-              _interstitialAd = DisplayAds.createInterstitialAd()
-                ..load()
-                ..show();
-              await Future.delayed(Duration(seconds: 2));
+            onTap: () {
+              _interstitialAd.show();
+              _interstitialAd = DisplayAds.createInterstitialAd()..load();
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -66,6 +66,8 @@ class _FavoriteTrailerPageState extends State<FavoriteTrailerPage> {
                 width: MediaQuery.of(context).size.width,
                 child: InkWell(
                   onTap: () {
+                    _interstitialAd.show();
+                    _interstitialAd = DisplayAds.createInterstitialAd()..load();
                     Navigator.push(
                       context,
                       MaterialPageRoute(

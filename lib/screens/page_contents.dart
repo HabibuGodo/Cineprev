@@ -27,7 +27,7 @@ class _ContentPageState extends State<ContentPage> {
     super.initState();
 
     //AdMob Ads
-    
+
     _bannerAd = DisplayAds.createBannerAd()
       ..load()
       ..show();
@@ -69,10 +69,10 @@ class _ContentPageState extends State<ContentPage> {
                     fontWeight: FontWeight.bold,
                     fontSize: 18),
               ),
-              onTap: () async {
+              onTap: () {
                 if (text == 'Recent') {
                   RewardedVideoAd.instance.show();
-                  await Future.delayed(Duration(seconds: 3));
+
                   Navigator.push(
                     context,
                     MyCustomRoute(
@@ -81,7 +81,7 @@ class _ContentPageState extends State<ContentPage> {
                   );
                 } else if (text == 'Popular') {
                   RewardedVideoAd.instance.show();
-                  await Future.delayed(Duration(seconds: 3));
+
                   Navigator.push(
                     context,
                     MyCustomRoute(
@@ -97,9 +97,10 @@ class _ContentPageState extends State<ContentPage> {
           Positioned(
             right: 20,
             child: InkWell(
-              onTap: () async {
+              onTap: () {
                 if (text == 'Recent') {
                   _interstitialAd.show();
+                  _interstitialAd = DisplayAds.createInterstitialAd()..load();
                   Navigator.push(
                     context,
                     MyCustomRoute(
@@ -108,6 +109,7 @@ class _ContentPageState extends State<ContentPage> {
                   );
                 } else if (text == 'Popular') {
                   _interstitialAd.show();
+                  _interstitialAd = DisplayAds.createInterstitialAd()..load();
                   Navigator.push(
                     context,
                     MyCustomRoute(

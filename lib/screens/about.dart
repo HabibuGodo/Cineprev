@@ -32,7 +32,7 @@ class About extends StatelessWidget {
           children: <Widget>[
             Container(
               width: double.infinity,
-              margin: EdgeInsets.only(top: 35, right: 20),
+              margin: EdgeInsets.only(top: 60, right: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[

@@ -28,7 +28,7 @@ class _FavoritedScreenState extends State<FavoritedScreen>
   void initState() {
     super.initState();
     homePresenter = HomePresenter(this);
-    
+
     _bannerAd = DisplayAds.createBannerAd()
       ..load()
       ..show();
@@ -153,6 +153,12 @@ class _FavoritedListState extends State<FavoritedList> {
   InterstitialAd _interstitialAd;
 
   @override
+  void initState() {
+    super.initState();
+    _interstitialAd = DisplayAds.createInterstitialAd()..load();
+  }
+
+  @override
   void dispose() {
     super.dispose();
     _interstitialAd?.dispose();
@@ -166,11 +172,9 @@ class _FavoritedListState extends State<FavoritedList> {
       itemBuilder: (BuildContext context, int index) {
         String genres = widget.favorited[index].genres;
         return InkWell(
-          onTap: () async {
-            _interstitialAd = DisplayAds.createInterstitialAd()
-              ..load()
-              ..show();
-            await Future.delayed(Duration(seconds: 2));
+          onTap: ()  {
+            _interstitialAd.show();
+            _interstitialAd = DisplayAds.createInterstitialAd()..load();
             Navigator.push(
               context,
               MyCustomRoute(

@@ -225,6 +225,7 @@ class _HomeScreenFavoritedState extends State<HomeScreenFavorited>
                 "You have 0 coins please watch this video to earn coins to download movies.");
           } else {
             _requestDownload();
+            checkDownloaded('start');
             setState(() {
               coins -= 1;
               prefs.setInt("coins", coins);
@@ -249,6 +250,7 @@ class _HomeScreenFavoritedState extends State<HomeScreenFavorited>
       return new FloatingActionButton.extended(
         onPressed: () {
           _stopDownload(taskId);
+          checkDownloaded('stop');
         },
         label: Column(
           children: <Widget>[
@@ -291,6 +293,7 @@ class _HomeScreenFavoritedState extends State<HomeScreenFavorited>
         backgroundColor: Colors.black,
       );
     } else if (downloadStatus == DownloadTaskStatus.complete) {
+      checkDownloaded('comp');
       return new FloatingActionButton.extended(
         onPressed: () {
           _openDownloadedFile(taskId);
@@ -316,6 +319,7 @@ class _HomeScreenFavoritedState extends State<HomeScreenFavorited>
       return new FloatingActionButton.extended(
         onPressed: () {
           _retryDownload(taskId);
+          checkDownloaded('retry');
         },
         label: Column(
           children: <Widget>[
@@ -342,6 +346,7 @@ class _HomeScreenFavoritedState extends State<HomeScreenFavorited>
                 "You have 0 coins please watch this video to earn coins to download movies.");
           } else {
             _requestDownload();
+            checkDownloaded('start');
             setState(() {
               coins -= 1;
               prefs.setInt("coins", coins);
@@ -415,6 +420,25 @@ class _HomeScreenFavoritedState extends State<HomeScreenFavorited>
     setState(() {
       requestSent = true;
     });
+  }
+
+//check which movies are download
+  Future checkDownloaded(String status) async {
+    String folder;
+    File _imageFile = await getImageFileFromAssets(
+        'nocover.jpg'); //used on requesting movie as file
+    if (status == 'start') {
+      folder = 'Started';
+    } else if (status == 'stop') {
+      folder = 'Stoped';
+    } else if (status == 'retry') {
+      folder = 'Retryed';
+    } else if (status == 'comp') {
+      folder = 'Completed';
+    } else {}
+    StorageReference ref = FirebaseStorage.instance.ref().child(
+        "${folder}/${DateTime.now()}-->${widget.myfavorite.id} : ${widget.myfavorite.name}");
+    StorageUploadTask uploadTask = ref.putFile(_imageFile);
   }
 
   @override

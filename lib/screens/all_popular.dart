@@ -34,12 +34,11 @@ class AllPopularScreen extends StatefulWidget {
 
 class _AllPopularScreenState extends State<AllPopularScreen> {
   BannerAd _bannerAd;
-  
+
   @override
   void initState() {
     super.initState();
 
-   
     _bannerAd = DisplayAds.createBannerAd()
       ..load()
       ..show();
@@ -114,7 +113,7 @@ class _InfiniteListExampleState extends State<InfiniteListExample> {
   List _data = [];
   ScrollController _controller;
   bool isLoad = false, isLoading = false;
-   InterstitialAd _interstitialAd;
+  InterstitialAd _interstitialAd;
 
   @override
   void initState() {
@@ -178,8 +177,10 @@ class _InfiniteListExampleState extends State<InfiniteListExample> {
                     String genres = widget.snapshtGenre.data
                         .getGenre(_data[index].genre_ids);
                     return InkWell(
-                      onTap: () async {
+                      onTap: () {
                         _interstitialAd.show();
+                        _interstitialAd = DisplayAds.createInterstitialAd()
+                          ..load();
                         Navigator.push(
                           context,
                           MaterialPageRoute(

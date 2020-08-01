@@ -18,6 +18,13 @@ class RecentMovies extends StatefulWidget {
 
 class _RecentMoviesState extends State<RecentMovies> {
   InterstitialAd _interstitialAd;
+
+  @override
+  void initState() {
+    super.initState();
+    _interstitialAd = DisplayAds.createInterstitialAd()..load();
+  }
+
   @override
   void dispose() {
     super.dispose();
@@ -33,11 +40,9 @@ class _RecentMoviesState extends State<RecentMovies> {
         String genres = widget.snapshotGenre.data
             .getGenre(snapshot.data.results[index].genre_ids);
         return InkWell(
-          onTap: () async {
-            _interstitialAd = DisplayAds.createInterstitialAd()
-              ..load()
-              ..show();
-            await Future.delayed(Duration(seconds: 2));
+          onTap: () {
+            _interstitialAd.show();
+            _interstitialAd = DisplayAds.createInterstitialAd()..load();
             Navigator.push(
                 context,
                 MaterialPageRoute(

@@ -23,12 +23,11 @@ class _RequestedScreenState extends State<RequestedScreen>
   HomePresenter homePresenter;
 
   BannerAd _bannerAd;
-  InterstitialAd _interstitialAd;
+
   @override
   void initState() {
     super.initState();
     homePresenter = HomePresenter(this);
-    
     _bannerAd = DisplayAds.createBannerAd()
       ..load()
       ..show();
@@ -37,7 +36,7 @@ class _RequestedScreenState extends State<RequestedScreen>
   @override
   void dispose() {
     _bannerAd?.dispose();
-    _interstitialAd?.dispose();
+
     super.dispose();
   }
 
@@ -138,35 +137,47 @@ class _RequestedScreenState extends State<RequestedScreen>
   }
 }
 
-class RequestedList extends StatelessWidget {
+class RequestedList extends StatefulWidget {
   final List<RequestedandFavorited> requested;
   final HomePresenter homePresenter;
 
-  RequestedList(
-    List<RequestedandFavorited> this.requested,
-    HomePresenter this.homePresenter, {
-    Key key,
-  }) : super(key: key);
+  RequestedList(this.requested, this.homePresenter);
 
+  @override
+  State<StatefulWidget> createState() {
+    return _RequestedListState();
+  }
+}
+
+class _RequestedListState extends State<RequestedList> {
   InterstitialAd _interstitialAd;
-  
+
+  @override
+  void initState() {
+    super.initState();
+    _interstitialAd = DisplayAds.createInterstitialAd()..load();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _interstitialAd?.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       padding: EdgeInsets.all(0),
-      itemCount: requested == null ? 0 : requested.length,
+      itemCount: widget.requested == null ? 0 : widget.requested.length,
       itemBuilder: (BuildContext context, int index) {
         return InkWell(
-          onTap: () async {
-            _interstitialAd = DisplayAds.createInterstitialAd()
-              ..load()
-              ..show();
-            await Future.delayed(Duration(seconds: 2));
+          onTap: () {
+            _interstitialAd.show();
+            _interstitialAd = DisplayAds.createInterstitialAd()..load();
             Navigator.push(
               context,
               MyCustomRoute(
-                builder: (context) => RequestedDetails(requested[index]),
+                builder: (context) => RequestedDetails(widget.requested[index]),
               ),
             );
           },
@@ -186,7 +197,7 @@ class RequestedList extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(20),
                             child: Image.memory(
-                              base64Decode(requested[index].poster_path),
+                              base64Decode(widget.requested[index].poster_path),
                               width: 185,
                             ),
                           ),
@@ -200,7 +211,7 @@ class RequestedList extends StatelessWidget {
                               mainAxisSize: MainAxisSize.max,
                               children: <Widget>[
                                 Text(
-                                  requested[index].name,
+                                  widget.requested[index].name,
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 20,
@@ -208,7 +219,7 @@ class RequestedList extends StatelessWidget {
                                 ),
                                 SizedBox(height: 5),
                                 Text(
-                                  requested[index].release_date,
+                                  widget.requested[index].release_date,
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,
@@ -216,7 +227,7 @@ class RequestedList extends StatelessWidget {
                                 ),
                                 SizedBox(height: 5),
                                 Text(
-                                  requested[index].genres,
+                                  widget.requested[index].genres,
                                   style: TextStyle(
                                       color: Colors.grey, fontSize: 14),
                                 ),
@@ -227,7 +238,8 @@ class RequestedList extends StatelessWidget {
                                         color: Colors.redAccent, size: 24),
                                     RichText(
                                       text: TextSpan(
-                                        text: requested[index].vote_average,
+                                        text: widget
+                                            .requested[index].vote_average,
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold,

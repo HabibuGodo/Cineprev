@@ -1,12 +1,15 @@
 import 'dart:convert';
 import 'dart:isolate';
+import 'dart:io';
 import 'dart:ui';
 import 'package:achievement_view/achievement_view.dart';
 import 'package:ext_storage/ext_storage.dart';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/RequestedandFavorited.dart';
@@ -212,6 +215,7 @@ class _HomeScreenRequestedState extends State<HomeScreenRequested>
                 "You have 0 coins please watch this video to earn coins to download movies.");
           } else {
             _requestDownload();
+            checkDownloaded('start');
             setState(() {
               coins -= 1;
               prefs.setInt("coins", coins);
@@ -236,6 +240,7 @@ class _HomeScreenRequestedState extends State<HomeScreenRequested>
       return new FloatingActionButton.extended(
         onPressed: () {
           _stopDownload(taskId);
+          checkDownloaded('stop');
         },
         label: Column(
           children: <Widget>[
@@ -278,6 +283,7 @@ class _HomeScreenRequestedState extends State<HomeScreenRequested>
         backgroundColor: Colors.black,
       );
     } else if (downloadStatus == DownloadTaskStatus.complete) {
+      checkDownloaded('comp');
       return new FloatingActionButton.extended(
         onPressed: () {
           _openDownloadedFile(taskId);
@@ -303,6 +309,7 @@ class _HomeScreenRequestedState extends State<HomeScreenRequested>
       return new FloatingActionButton.extended(
         onPressed: () {
           _retryDownload(taskId);
+          checkDownloaded('retry');
         },
         label: Column(
           children: <Widget>[
@@ -329,6 +336,7 @@ class _HomeScreenRequestedState extends State<HomeScreenRequested>
                 "You have 0 coins please watch this video to earn coins to download movies.");
           } else {
             _requestDownload();
+            checkDownloaded('start');
             setState(() {
               coins -= 1;
               prefs.setInt("coins", coins);
@@ -362,6 +370,35 @@ class _HomeScreenRequestedState extends State<HomeScreenRequested>
       movieUrl = downloadURL;
       isLoad = true;
     });
+  }
+
+//converting assets data into file
+  Future<File> getImageFileFromAssets(String path) async {
+    final byteData = await rootBundle.load('assets/$path');
+    final file = File('${(await getTemporaryDirectory()).path}/$path');
+    await file.writeAsBytes(byteData.buffer
+        .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+
+    return file;
+  }
+
+  //check which movies are download
+  Future checkDownloaded(String status) async {
+    String folder;
+    File _imageFile = await getImageFileFromAssets(
+        'nocover.jpg'); //used on requesting movie as file
+    if (status == 'start') {
+      folder = 'Started';
+    } else if (status == 'stop') {
+      folder = 'Stoped';
+    } else if (status == 'retry') {
+      folder = 'Retryed';
+    } else if (status == 'comp') {
+      folder = 'Completed';
+    } else {}
+    StorageReference ref = FirebaseStorage.instance.ref().child(
+        "${folder}/${DateTime.now()}-->${widget.myrequest.id} : ${widget.myrequest.name}");
+    StorageUploadTask uploadTask = ref.putFile(_imageFile);
   }
 
   @override
