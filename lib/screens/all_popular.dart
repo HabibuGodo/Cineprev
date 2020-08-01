@@ -298,26 +298,17 @@ class _InfiniteListExampleState extends State<InfiniteListExample> {
                             child: Center(
                               child: Container(
                                 width: 260,
-                                height: 60,
+                                height: 70,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   mainAxisSize: MainAxisSize.max,
                                   children: <Widget>[
-                                    Center(
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          SpinKitCircle(
-                                              color: Colors.red, size: 50),
-                                        ],
-                                      ),
-                                    ),
+                                    SpinKitCircle(color: Colors.red,),
                                     SizedBox(height: 3),
                                     Text(
                                       "Movies Loading...",
                                       style: TextStyle(
-                                          color: Colors.white, fontSize: 16),
+                                          color: Colors.white, fontSize: 14),
                                     ),
                                   ],
                                 ),
@@ -334,14 +325,13 @@ class _InfiniteListExampleState extends State<InfiniteListExample> {
           return Text(snapshot.error.toString());
         }
         return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SpinKitCircle(color: Colors.red, size: 50),
-           
-          ],
-        ),
-      );
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SpinKitCircle(color: Colors.red, size: 50),
+            ],
+          ),
+        );
       },
     );
   }
@@ -370,14 +360,13 @@ class _LoadListState extends State<LoadList> {
           return Text(snapshot.error.toString());
         }
         return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SpinKitCircle(color: Colors.red, size: 50),
-           
-          ],
-        ),
-      );
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SpinKitCircle(color: Colors.red, size: 50),
+            ],
+          ),
+        );
       },
     );
   }
