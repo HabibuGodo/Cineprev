@@ -1,5 +1,6 @@
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../services/ads.dart';
 import '../blocs/movies_popular_bloc.dart';
 import '../models/genre_model.dart';
@@ -302,7 +303,16 @@ class _InfiniteListExampleState extends State<InfiniteListExample> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   mainAxisSize: MainAxisSize.max,
                                   children: <Widget>[
-                                    CircularProgressIndicator(),
+                                    Center(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          SpinKitCircle(
+                                              color: Colors.red, size: 50),
+                                        ],
+                                      ),
+                                    ),
                                     SizedBox(height: 3),
                                     Text(
                                       "Movies Loading...",
@@ -324,8 +334,14 @@ class _InfiniteListExampleState extends State<InfiniteListExample> {
           return Text(snapshot.error.toString());
         }
         return Center(
-          child: CircularProgressIndicator(),
-        );
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            SpinKitCircle(color: Colors.red, size: 50),
+           
+          ],
+        ),
+      );
       },
     );
   }
@@ -353,7 +369,15 @@ class _LoadListState extends State<LoadList> {
         } else if (snapshot.hasError) {
           return Text(snapshot.error.toString());
         }
-        return Center(child: CircularProgressIndicator());
+        return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            SpinKitCircle(color: Colors.red, size: 50),
+           
+          ],
+        ),
+      );
       },
     );
   }

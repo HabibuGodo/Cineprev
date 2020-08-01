@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:ui';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../models/RequestedandFavorited.dart';
 import '../models/genre_model.dart';
 import '../resources/home_presenter.dart';
@@ -120,7 +121,12 @@ class _RequestedScreenState extends State<RequestedScreen>
                           ],
                         )
                       : Center(
-                          child: CircularProgressIndicator(),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              SpinKitCircle(color: Colors.red, size: 50),
+                            ],
+                          ),
                         ),
                 );
               },

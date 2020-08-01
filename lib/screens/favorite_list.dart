@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:CinePrev/screens/favorite_details.dart';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../models/RequestedandFavorited.dart';
 import '../models/genre_model.dart';
 import '../resources/home_presenter.dart';
@@ -120,7 +121,12 @@ class _FavoritedScreenState extends State<FavoritedScreen>
                           ],
                         )
                       : Center(
-                          child: CircularProgressIndicator(),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              SpinKitCircle(color: Colors.red, size: 50),
+                            ],
+                          ),
                         ),
                 );
               },
@@ -172,7 +178,7 @@ class _FavoritedListState extends State<FavoritedList> {
       itemBuilder: (BuildContext context, int index) {
         String genres = widget.favorited[index].genres;
         return InkWell(
-          onTap: ()  {
+          onTap: () {
             _interstitialAd.show();
             _interstitialAd = DisplayAds.createInterstitialAd()..load();
             Navigator.push(

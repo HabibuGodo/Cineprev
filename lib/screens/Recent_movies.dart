@@ -1,6 +1,7 @@
 import 'package:CinePrev/services/ads.dart';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../blocs/movies_bloc.dart';
 import '../models/item_model.dart';
 import '../models/genre_model.dart';
@@ -109,12 +110,22 @@ class _RecentMoviesState extends State<RecentMovies> {
             return Text(snapshot.hasError.toString());
           } else {
             return Center(
-              child: CircularProgressIndicator(),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SpinKitCircle(color: Colors.red, size: 50),
+                ],
+              ),
             );
           }
         } else if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
-            child: CircularProgressIndicator(),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SpinKitCircle(color: Colors.red, size: 50),
+              ],
+            ),
           );
         } else {
           return Container(

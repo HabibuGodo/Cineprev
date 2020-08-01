@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart';
 import 'package:achievement_view/achievement_view.dart';
 import 'package:path_provider/path_provider.dart';
@@ -1061,7 +1062,15 @@ class _PreloadTrailerState extends State<PreloadTrailer> {
           return Text(snapshot.error.toString(),
               style: TextStyle(color: Colors.white));
         }
-        return Center(child: CircularProgressIndicator());
+        return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            SpinKitCircle(color: Colors.red, size: 50),
+           
+          ],
+        ),
+      );
       },
     );
   }

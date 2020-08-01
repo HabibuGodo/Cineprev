@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../blocs/genre_bloc.dart';
 import '../models/genre_model.dart';
 import './page_contents.dart';
@@ -65,7 +66,12 @@ class _PreloadContentState extends State<PreloadContent> {
           return Center(child: Text("Something went wrong!"));
         } else {
           return Center(
-            child: CircularProgressIndicator(),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SpinKitCircle(color: Colors.red, size: 50),
+              ],
+            ),
           );
         }
       },

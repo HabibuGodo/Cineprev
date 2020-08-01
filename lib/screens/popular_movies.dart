@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:CinePrev/services/ads.dart';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../blocs/movies_popular_bloc.dart';
 import '../models/item_model.dart';
 import '../models/genre_model.dart';
@@ -38,12 +39,22 @@ class _PopularMoviesState extends State<PopularMovies> {
             );
           } else {
             return Center(
-              child: CircularProgressIndicator(),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SpinKitCircle(color: Colors.red, size: 50),
+                ],
+              ),
             );
           }
         } else if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
-            child: CircularProgressIndicator(),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SpinKitCircle(color: Colors.red, size: 50),
+              ],
+            ),
           );
         } else {
           return Container(
@@ -73,11 +84,11 @@ class _ItemPopularLoadState extends State<ItemPopularLoad> {
 
   @override
   void initState() {
-    
     super.initState();
-    
-              _interstitialAd = DisplayAds.createInterstitialAd()..load();
+
+    _interstitialAd = DisplayAds.createInterstitialAd()..load();
   }
+
   @override
   void dispose() {
     super.dispose();
@@ -96,9 +107,9 @@ class _ItemPopularLoadState extends State<ItemPopularLoad> {
             .getGenre(widget.snapshot.data.results[index].genre_ids);
 
         return InkWell(
-          onTap: (){
+          onTap: () {
             _interstitialAd.show();
-              _interstitialAd = DisplayAds.createInterstitialAd()..load();
+            _interstitialAd = DisplayAds.createInterstitialAd()..load();
             Navigator.push(
                 context,
                 MaterialPageRoute(
