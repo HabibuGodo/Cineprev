@@ -1,3 +1,4 @@
+import 'package:cache_image/cache_image.dart';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -200,13 +201,21 @@ class _InfiniteListExampleState extends State<InfiniteListExample> {
                               Container(
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(20),
-                                  child: Image.network(
-                                    'https://image.tmdb.org/t/p/w185//${_data[index].poster_path}' ==
-                                            null
-                                        ? 'https://lightning.od-cdn.com/static/img/no-cover_en_US.a8920a302274ea37cfaecb7cf318890e.jpg'
-                                        : 'https://image.tmdb.org/t/p/w185//${_data[index].poster_path}',
-                                    width: 185,
+                                  child: FadeInImage(
+                                    fit: BoxFit.cover,
+                                    placeholder:
+                                        AssetImage('assets/gif/loading.gif'),
+                                    image: CacheImage(
+                                      'https://image.tmdb.org/t/p/w185//${_data[index].poster_path}',
+                                    ),
+                                    width: 180,
                                   ),
+                                  // Image.network(
+                                  //   'https://image.tmdb.org/t/p/w185//${_data[index].poster_path}' ==
+                                  //           null
+                                  //       ? 'https://lightning.od-cdn.com/static/img/no-cover_en_US.a8920a302274ea37cfaecb7cf318890e.jpg'
+                                  //       : 'https://image.tmdb.org/t/p/w185//${_data[index].poster_path}',
+                                  //   width: 185,
                                 ),
                               ),
                               Container(
@@ -303,7 +312,9 @@ class _InfiniteListExampleState extends State<InfiniteListExample> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   mainAxisSize: MainAxisSize.max,
                                   children: <Widget>[
-                                    SpinKitCircle(color: Colors.red,),
+                                    SpinKitCircle(
+                                      color: Colors.red,
+                                    ),
                                     SizedBox(height: 3),
                                     Text(
                                       "Movies Loading...",

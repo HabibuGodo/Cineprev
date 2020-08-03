@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:isolate';
 import 'dart:typed_data';
 import 'dart:ui';
+import 'package:cache_image/cache_image.dart';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -593,7 +594,7 @@ class _MovieDetailPage extends State<MovieDetailPage> {
                         image: DecorationImage(
                           fit: BoxFit.fitWidth,
                           alignment: FractionalOffset.topCenter,
-                          image: NetworkImage(
+                          image: CacheImage(
                               'https://image.tmdb.org/t/p/w185//${widget.data.poster_path.replaceAll('w185', 'w400')}' ==
                                       null
                                   ? Image.asset('assets/nocover.jpg')
@@ -1063,14 +1064,13 @@ class _PreloadTrailerState extends State<PreloadTrailer> {
               style: TextStyle(color: Colors.white));
         }
         return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SpinKitCircle(color: Colors.red, size: 50),
-           
-          ],
-        ),
-      );
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SpinKitCircle(color: Colors.red, size: 50),
+            ],
+          ),
+        );
       },
     );
   }

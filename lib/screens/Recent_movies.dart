@@ -1,4 +1,5 @@
 import 'package:CinePrev/services/ads.dart';
+import 'package:cache_image/cache_image.dart';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -66,11 +67,19 @@ class _RecentMoviesState extends State<RecentMovies> {
                     tag: snapshot.data.results[index],
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
-                      child: Image.network(
-                        snapshot.data.results[index].poster_path == null
-                            ? "https://www.danishdemodungeon.dk/atobic_files/no-cover-copy.png"
-                            : 'https://image.tmdb.org/t/p/w185//${snapshot.data.results[index].poster_path}',
+                      child: FadeInImage(
+                        fit: BoxFit.cover,
+                        placeholder: AssetImage('assets/gif/loading.gif'),
+                        image: CacheImage(
+                          'https://image.tmdb.org/t/p/w185//${snapshot.data.results[index].poster_path}',
+                        ),
+                        // height: 192.0,
                       ),
+                      //   Image.network(
+                      //     snapshot.data.results[index].poster_path == null
+                      //         ? "https://www.danishdemodungeon.dk/atobic_files/no-cover-copy.png"
+                      //         : 'https://image.tmdb.org/t/p/w185//${snapshot.data.results[index].poster_path}',
+                      //   ),
                     ),
                   ),
                   Text(

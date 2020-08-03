@@ -1,4 +1,5 @@
 import 'package:CinePrev/services/ads.dart';
+import 'package:cache_image/cache_image.dart';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -71,12 +72,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 itemBuilder: (context, suggestion) {
                   return ListTile(
-                    leading: 'https://image.tmdb.org/t/p/w185//${suggestion.poster_path}' !=
-                            null
-                        ? Image.network(
-                            'https://image.tmdb.org/t/p/w185//${suggestion.poster_path}')
-                        : Image.network(
-                            'https://www.google.com/imgres?imgurl=https%3A%2F%2Fcdn.domestika.org%2Fraw%2Fupload%2Fassets%2Fprojects%2Fproject-default-cover-1248c9d991d3ef88af5464656840f5534df2ae815032af0fdf39562fee08f0a6.svg&imgrefurl=https%3A%2F%2Fwww.domestika.org%2Fen%2Fschools%2F12923-alberta-university-of-the-arts&tbnid=iO_TkdnJSBLLpM&vet=12ahUKEwja-_SSxuroAhUC-4UKHQBQDX0QMygUegQIARAr..i&docid=ca4YMtCI22hjfM&w=211&h=211&itg=1&q=no%20cover&ved=2ahUKEwja-_SSxuroAhUC-4UKHQBQDX0QMygUegQIARAr'),
+                    leading: FadeInImage(
+                      fit: BoxFit.cover,
+                      placeholder: AssetImage('assets/gif/loading.gif'),
+                      image: CacheImage(
+                          'https://image.tmdb.org/t/p/w185//${suggestion.poster_path}'),
+                      width:40,
+                    ),
                     title: Text(suggestion.title),
                     subtitle:
                         Text('Released date : ${suggestion.release_date}'),

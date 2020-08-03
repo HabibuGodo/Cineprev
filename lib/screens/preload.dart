@@ -13,45 +13,45 @@ class PreloadContent extends StatefulWidget {
   }
 }
 
-ConnectivityResult result;
+//ConnectivityResult result;
 
 class _PreloadContentState extends State<PreloadContent> {
   @override
   void initState() {
     super.initState();
-    _checkInternetConnectivity(result);
+    //_checkInternetConnectivity(result);
   }
 
-  _showDialog(title, text) {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text(title),
-            content: Text(text),
-            actions: <Widget>[
-              FlatButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text("Ok"),
-              )
-            ],
-          );
-        });
-  }
+  // _showDialog(title, text) {
+  //   showDialog(
+  //       context: context,
+  //       builder: (context) {
+  //         return AlertDialog(
+  //           title: Text(title),
+  //           content: Text(text),
+  //           actions: <Widget>[
+  //             FlatButton(
+  //               onPressed: () {
+  //                 Navigator.of(context).pop();
+  //               },
+  //               child: Text("Ok"),
+  //             )
+  //           ],
+  //         );
+  //       });
+  // }
 
-  void _checkInternetConnectivity(result) async {
-    try {
-      final result = await InternetAddress.lookup('google.com');
-      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-      } else {
-        _showDialog('Error!', "No internet connection.");
-      }
-    } on SocketException catch (_) {
-      _showDialog('Error!', "No internet connection.");
-    }
-  }
+  // void _checkInternetConnectivity(result) async {
+  //   try {
+  //     final result = await InternetAddress.lookup('google.com');
+  //     if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+  //     } else {
+  //       _showDialog('Error!', "No internet connection.");
+  //     }
+  //   } on SocketException catch (_) {
+  //     _showDialog('Error!', "No internet connection.");
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
