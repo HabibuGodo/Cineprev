@@ -113,8 +113,9 @@ class _MovieDetailPage extends State<MovieDetailPage> {
       }
     };
     RewardedVideoAd.instance.load(
-        //"ca-app-pub-5430937479371157/4834594631"
-        adUnitId: "ca-app-pub-5430937479371157/4834594631",
+        //"ca-app-pub-5430937479371157/4834594631" old
+        //ca-app-pub-7400114702189070/3889396168  new
+        adUnitId: "ca-app-pub-7400114702189070/3889396168",
         targetingInfo: DisplayAds.targetingInfo);
     /////////////////////////////////
   }

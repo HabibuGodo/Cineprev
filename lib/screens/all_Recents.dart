@@ -138,6 +138,7 @@ class _InfiniteListExampleState extends State<InfiniteListExample> {
       }
     });
     _data = widget.snapshot.data.results;
+    _interstitialAd = DisplayAds.createInterstitialAd()..load();
   }
 
   @override

@@ -1,5 +1,6 @@
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import './all_Recents.dart';
 import './all_popular.dart';
 import './Recent_movies.dart';
@@ -23,6 +24,9 @@ class _ContentPageState extends State<ContentPage> {
 
   BannerAd _bannerAd;
   InterstitialAd _interstitialAd;
+
+   SharedPreferences prefs;
+   
   void initState() {
     super.initState();
 
@@ -38,12 +42,14 @@ class _ContentPageState extends State<ContentPage> {
       if (event == RewardedVideoAdEvent.rewarded) {
         setState(() {
           coins += rewardAmount;
+          prefs.setInt("coins", coins);
         });
       }
     };
     RewardedVideoAd.instance.load(
-        //"ca-app-pub-5430937479371157/4834594631"
-        adUnitId: "ca-app-pub-5430937479371157/4834594631",
+        //"ca-app-pub-5430937479371157/4834594631" old
+        //ca-app-pub-7400114702189070/3889396168 new
+        adUnitId: "ca-app-pub-7400114702189070/3889396168",
         targetingInfo: DisplayAds.targetingInfo);
   }
 

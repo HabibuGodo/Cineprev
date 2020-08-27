@@ -1,6 +1,5 @@
 import 'dart:async';
-import 'package:CinePrev/services/ads.dart';
-import 'package:applovin/applovin.dart';
+// import 'package:applovin/applovin.dart';
 import 'package:facebook_audience_network/facebook_audience_network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import './screens/appintro.dart';
 import './screens/splashscreen.dart';
 import './utility/fadetransation.dart';
+import './services/ads.dart';
 
 
 void main() => runApp(MyApp());
@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> {
 
   generalInit() async {
     DisplayAds.initializeAdMob();
-    AppLovin.init();
+    // AppLovin.init();
     FacebookAudienceNetwork.init();
     await FlutterDownloader.initialize(debug: true);
     SystemChrome.setPreferredOrientations([
@@ -130,27 +130,3 @@ class _CheckPageState extends State<CheckPage> {
     return Container();
   }
 }
-
-
-// void main() async {
-
-//   WidgetsFlutterBinding.ensureInitialized();
-//   DisplayAds.initializeAdMob();
-//   AppLovin.init();
-//   FacebookAudienceNetwork.init();
-//   await FlutterDownloader.initialize(debug: true);
-
-//   runApp(MaterialApp(
-//     debugShowCheckedModeBanner: false,
-//     title: 'CinePrev',
-//     theme: ThemeData(
-//       fontFamily: 'Raleway-SemiBold',
-//     ),
-//     home: CheckPage(),
-//   ));
-
-//   SystemChrome.setPreferredOrientations([
-//     DeviceOrientation.portraitUp,
-//     DeviceOrientation.portraitDown,
-//   ]);
-// }

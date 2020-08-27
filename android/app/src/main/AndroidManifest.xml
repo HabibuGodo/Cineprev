@@ -73,9 +73,9 @@
             android:value="2" />
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-5430937479371157~9093356110"/>
-        <meta-data android:name="applovin.sdk.key"
-            android:value="xNxh0kCdS28LDDZWRJ75Z_q1IUkJme_AFCn8tbxps9KJoqxpmLDuJZvLWZQWnH5ilsJOWN4GLOSMI9hMeKIghW"  />
+            android:value="ca-app-pub-7400114702189070~9124770348"/>
+        <!-- <meta-data android:name="applovin.sdk.key"
+            android:value="xNxh0kCdS28LDDZWRJ75Z_q1IUkJme_AFCn8tbxps9KJoqxpmLDuJZvLWZQWnH5ilsJOWN4GLOSMI9hMeKIghW"  /> -->
         <!-- <meta-data android:name="com.facebook.sdk.ApplicationId" 
             android:value="684128705495065"/> -->
         <!-- <meta-data 

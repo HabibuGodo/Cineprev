@@ -5,8 +5,9 @@ class DisplayAds {
 
   static void initializeAdMob() {
     FirebaseAdMob.instance
-        //"ca-app-pub-5430937479371157~9093356110"
-        .initialize(appId: "ca-app-pub-5430937479371157~9093356110");
+        //"ca-app-pub-5430937479371157~9093356110" - old
+        //ca-app-pub-7400114702189070~9124770348 new
+        .initialize(appId: "ca-app-pub-7400114702189070~9124770348");
   }
 
   static const MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
@@ -35,14 +36,18 @@ class DisplayAds {
       'old movies',
       'film movie',
       'movies out now',
-      'movie times'
+      'movie times',
+      'action movies',
+      'horror movies',
+      'thriller movies'
     ],
   );
 
   static BannerAd createBannerAd() {
     return BannerAd(
-        //"ca-app-pub-5430937479371157/5438317600"
-        adUnitId: "ca-app-pub-5430937479371157/5438317600",
+        //"ca-app-pub-5430937479371157/5438317600" old
+        //ca-app-pub-7400114702189070/4336134631   new
+        adUnitId: "ca-app-pub-7400114702189070/4336134631",
         targetingInfo: targetingInfo,
         size: AdSize.banner,
         listener: (MobileAdEvent event) {
@@ -52,8 +57,9 @@ class DisplayAds {
 
   static InterstitialAd createInterstitialAd() {
     return InterstitialAd(
-        //"ca-app-pub-5430937479371157/8391289168"
-        adUnitId: "ca-app-pub-5430937479371157/8391289168",
+        //"ca-app-pub-5430937479371157/8391289168"  old
+        //ca-app-pub-7400114702189070/9013746247   new
+        adUnitId: "ca-app-pub-7400114702189070/9013746247",
         targetingInfo: targetingInfo,
         listener: (MobileAdEvent event) {
           print("InterstitialAd $event");
