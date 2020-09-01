@@ -1,7 +1,6 @@
-import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-import '../services/ads.dart';
+
 
 class PlayVideo extends StatefulWidget {
   final String videoId;
@@ -12,13 +11,8 @@ class PlayVideo extends StatefulWidget {
 
 class _PlayVideoState extends State<PlayVideo> {
   YoutubePlayerController _controller;
-  BannerAd _bannerAd;
   @override
   void initState() {
-    
-    _bannerAd = DisplayAds.createBannerAd()
-      ..load()
-      ..show();
     String videoURL = "https://www.youtube.com/watch?v=${widget.videoId}";
     _controller = YoutubePlayerController(
       initialVideoId: YoutubePlayer.convertUrlToId(videoURL),
@@ -30,7 +24,6 @@ class _PlayVideoState extends State<PlayVideo> {
   @override
   void dispose() {
     _controller.dispose();
-    _bannerAd.dispose();
     super.dispose();
   }
 

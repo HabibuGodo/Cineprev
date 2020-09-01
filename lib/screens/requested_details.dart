@@ -231,7 +231,7 @@ class _HomeScreenRequestedState extends State<HomeScreenRequested>
               'Download',
               style: TextStyle(
                   color: Colors.white,
-                  fontSize: 16,
+                  fontSize:  14,
                   fontWeight: FontWeight.bold),
             )
           ],
@@ -352,7 +352,7 @@ class _HomeScreenRequestedState extends State<HomeScreenRequested>
               'Download',
               style: TextStyle(
                   color: Colors.white,
-                  fontSize: 16,
+                  fontSize: 14,
                   fontWeight: FontWeight.bold),
             )
           ],
@@ -405,9 +405,10 @@ class _HomeScreenRequestedState extends State<HomeScreenRequested>
 
   @override
   void dispose() {
+    super.dispose();
     _bannerAd?.dispose();
     IsolateNameServer.removePortNameMapping('downloader_send_port');
-    super.dispose();
+    
   }
 
   @override
@@ -574,7 +575,7 @@ class _HomeScreenRequestedState extends State<HomeScreenRequested>
                                               .toString(),
                                           style: TextStyle(
                                               color: Colors.green,
-                                              fontSize: 22,
+                                              fontSize: 20,
                                               fontWeight: FontWeight.bold),
                                         ),
                                         Text(
@@ -637,7 +638,7 @@ class _HomeScreenRequestedState extends State<HomeScreenRequested>
                                               .toString(),
                                           style: TextStyle(
                                               color: Colors.blue,
-                                              fontSize: 22,
+                                              fontSize: 20,
                                               fontWeight: FontWeight.bold),
                                         ),
                                         Text(

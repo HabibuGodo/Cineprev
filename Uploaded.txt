@@ -74,3 +74,15 @@ UPLOADED MOVIES LIST WITH THEIR ID
 10999 : Commando
 299536 : Avengers: Infinity War
 718444 : rogue
+621013 : chemical-hearts
+470610 : endless
+724989 : hard-kill
+736443 : last-shot
+687563 : the-message
+345887 : the-equalizer-2
+284054 : black-panther
+535292 : 21-bridges
+539885 : Ava
+577922 : Tenet
+501979 : bill-ted-face-the-music
+520318 : fatima

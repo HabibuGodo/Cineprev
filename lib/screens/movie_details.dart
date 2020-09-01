@@ -260,7 +260,7 @@ class _MovieDetailPage extends State<MovieDetailPage> {
               'Download',
               style: TextStyle(
                   color: Colors.white,
-                  fontSize: 16,
+                  fontSize: 14,
                   fontWeight: FontWeight.bold),
             )
           ],
@@ -381,7 +381,7 @@ class _MovieDetailPage extends State<MovieDetailPage> {
               'Download',
               style: TextStyle(
                   color: Colors.white,
-                  fontSize: 16,
+                  fontSize: 14,
                   fontWeight: FontWeight.bold),
             )
           ],
@@ -463,9 +463,10 @@ class _MovieDetailPage extends State<MovieDetailPage> {
 
   @override
   void dispose() {
+    super.dispose();
     _bannerAd?.dispose();
     IsolateNameServer.removePortNameMapping('downloader_send_port');
-    super.dispose();
+    
   }
 
   @override
@@ -666,7 +667,7 @@ class _MovieDetailPage extends State<MovieDetailPage> {
                                           widget.data.popularity.toString(),
                                           style: TextStyle(
                                               color: Colors.green,
-                                              fontSize: 22,
+                                              fontSize: 20,
                                               fontWeight: FontWeight.bold),
                                         ),
                                         Text(
@@ -728,7 +729,7 @@ class _MovieDetailPage extends State<MovieDetailPage> {
                                           widget.data.vote_count.toString(),
                                           style: TextStyle(
                                               color: Colors.blue,
-                                              fontSize: 22,
+                                              fontSize: 20,
                                               fontWeight: FontWeight.bold),
                                         ),
                                         Text(

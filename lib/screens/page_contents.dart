@@ -36,25 +36,12 @@ class _ContentPageState extends State<ContentPage> {
       ..load()
       ..show();
     _interstitialAd = DisplayAds.createInterstitialAd()..load();
-    RewardedVideoAd.instance.listener =
-        (RewardedVideoAdEvent event, {String rewardType, int rewardAmount}) {
-      print("RewardedVideoAd event $event");
-      if (event == RewardedVideoAdEvent.rewarded) {
-        setState(() {
-          coins += rewardAmount;
-          prefs.setInt("coins", coins);
-        });
-      }
-    };
-    RewardedVideoAd.instance.load(
-        //"ca-app-pub-5430937479371157/4834594631" old
-        //ca-app-pub-7400114702189070/3889396168 new
-        adUnitId: "ca-app-pub-7400114702189070/3889396168",
-        targetingInfo: DisplayAds.targetingInfo);
+    
   }
 
   @override
   void dispose() {
+    _interstitialAd?.dispose();
     _bannerAd.dispose();
     super.dispose();
   }
@@ -77,7 +64,8 @@ class _ContentPageState extends State<ContentPage> {
               ),
               onTap: () {
                 if (text == 'Recent') {
-                  RewardedVideoAd.instance.show();
+                  _interstitialAd.show();
+                  _interstitialAd = DisplayAds.createInterstitialAd()..load();
 
                   Navigator.push(
                     context,
@@ -86,7 +74,8 @@ class _ContentPageState extends State<ContentPage> {
                     ),
                   );
                 } else if (text == 'Popular') {
-                  RewardedVideoAd.instance.show();
+                  _interstitialAd.show();
+                  _interstitialAd = DisplayAds.createInterstitialAd()..load();
 
                   Navigator.push(
                     context,
