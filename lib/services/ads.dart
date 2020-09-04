@@ -46,9 +46,10 @@ class DisplayAds {
 
   static BannerAd _createBannerAd() {
     return BannerAd(
+      //ca-app-pub-3940256099942544/6300978111 test
         //"ca-app-pub-5430937479371157/5438317600" old
         //ca-app-pub-7400114702189070/4336134631   new
-        adUnitId: "ca-app-pub-3940256099942544/6300978111",
+        adUnitId: "ca-app-pub-7400114702189070/4336134631",
         targetingInfo: targetingInfo,
         size: AdSize.banner,
         listener: (MobileAdEvent event) {
@@ -72,9 +73,10 @@ class DisplayAds {
 
   static InterstitialAd createInterstitialAd() {
     return InterstitialAd(
+      //ca-app-pub-3940256099942544/1033173712 test
         //"ca-app-pub-5430937479371157/8391289168"  old
         //ca-app-pub-7400114702189070/9013746247   new
-        adUnitId: "ca-app-pub-3940256099942544/1033173712",
+        adUnitId: "ca-app-pub-7400114702189070/9013746247",
         targetingInfo: targetingInfo,
         listener: (MobileAdEvent event) {
           print("InterstitialAd $event");
