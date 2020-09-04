@@ -29,6 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+    
     _interstitialAd = DisplayAds.createInterstitialAd()..load();
     _typeAheadController.clear();
   }

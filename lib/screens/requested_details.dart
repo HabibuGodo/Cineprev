@@ -66,6 +66,7 @@ class _HomeScreenRequestedState extends State<HomeScreenRequested>
   @override
   void initState() {
     super.initState();
+   
     homePresenter = HomePresenter(this);
     backdrop_path = widget.myrequest.poster_path;
     checkForDownload(); // check if movies is on firebase to download
@@ -73,9 +74,7 @@ class _HomeScreenRequestedState extends State<HomeScreenRequested>
     coin(); //for coins
     ////////////  Ads   ///////////
 
-    _bannerAd = DisplayAds.createBannerAd()
-      ..load()
-      ..show();
+    _bannerAd = DisplayAds.showBannerAd();
 
     RewardedVideoAd.instance.listener =
         (RewardedVideoAdEvent event, {String rewardType, int rewardAmount}) {

@@ -24,6 +24,7 @@ class _RecentMoviesState extends State<RecentMovies> {
   @override
   void initState() {
     super.initState();
+    
     _interstitialAd = DisplayAds.createInterstitialAd()..load();
   }
 

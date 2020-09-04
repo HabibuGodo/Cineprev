@@ -93,14 +93,13 @@ class _MovieDetailPage extends State<MovieDetailPage> {
   SharedPreferences prefs;
   void initState() {
     super.initState();
+    
     coin(); //for coins
     checkForDownload(); // check if movies is on firebase to download
     _init(); //for downloading
 
 ///////////////////////ADS////////////////////////////////
-    _bannerAd = DisplayAds.createBannerAd()
-      ..load()
-      ..show();
+    _bannerAd = DisplayAds.showBannerAd();
 
     RewardedVideoAd.instance.listener =
         (RewardedVideoAdEvent event, {String rewardType, int rewardAmount}) {

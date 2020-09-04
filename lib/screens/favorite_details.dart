@@ -77,10 +77,9 @@ class _HomeScreenFavoritedState extends State<HomeScreenFavorited>
     coin(); //for coins
 
     ////////////  Ads   ///////////
-
-    _bannerAd = DisplayAds.createBannerAd()
-      ..load()
-      ..show();
+    
+    _bannerAd = DisplayAds.showBannerAd();
+      
 
     RewardedVideoAd.instance.listener =
         (RewardedVideoAdEvent event, {String rewardType, int rewardAmount}) {

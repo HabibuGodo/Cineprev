@@ -30,9 +30,7 @@ class _FavoritedScreenState extends State<FavoritedScreen>
     super.initState();
     homePresenter = HomePresenter(this);
 
-    _bannerAd = DisplayAds.createBannerAd()
-      ..load()
-      ..show();
+    _bannerAd = DisplayAds.showBannerAd();
   }
 
   @override
@@ -161,6 +159,7 @@ class _FavoritedListState extends State<FavoritedList> {
   @override
   void initState() {
     super.initState();
+    
     _interstitialAd = DisplayAds.createInterstitialAd()..load();
   }
 

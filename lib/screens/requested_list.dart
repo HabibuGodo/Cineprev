@@ -28,10 +28,9 @@ class _RequestedScreenState extends State<RequestedScreen>
   @override
   void initState() {
     super.initState();
+    
     homePresenter = HomePresenter(this);
-    _bannerAd = DisplayAds.createBannerAd()
-      ..load()
-      ..show();
+    _bannerAd = DisplayAds.showBannerAd();
   }
 
   @override

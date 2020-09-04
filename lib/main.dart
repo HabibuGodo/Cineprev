@@ -1,5 +1,6 @@
 import 'dart:async';
 // import 'package:applovin/applovin.dart';
+import 'package:CinePrev/services/ads.dart';
 import 'package:facebook_audience_network/facebook_audience_network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,7 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import './screens/appintro.dart';
 import './screens/splashscreen.dart';
 import './utility/fadetransation.dart';
-import './services/ads.dart';
+
 
 
 void main() => runApp(MyApp());

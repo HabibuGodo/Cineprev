@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'package:CinePrev/services/ads.dart';
-import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import '../models/trailer_model.dart';
@@ -18,14 +16,7 @@ class FavoriteTrailerPage extends StatefulWidget {
 }
 
 class _FavoriteTrailerPageState extends State<FavoriteTrailerPage> {
-  InterstitialAd _interstitialAd;
-
-  @override
-  void dispose() {
-    super.dispose();
-    _interstitialAd?.dispose();
-  }
-
+  
   @override
   void initState() {
     super.initState();
@@ -34,8 +25,6 @@ class _FavoriteTrailerPageState extends State<FavoriteTrailerPage> {
       SchedulerBinding.instance
           .addPostFrameCallback((_) => widget.callback(widget.snapshot.data));
     }
-
-    _interstitialAd = DisplayAds.createInterstitialAd()..load();
   }
 
   @override
@@ -52,8 +41,6 @@ class _FavoriteTrailerPageState extends State<FavoriteTrailerPage> {
         return GridTile(
           child: InkWell(
             onTap: () {
-              _interstitialAd.show();
-              _interstitialAd = DisplayAds.createInterstitialAd()..load();
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -66,8 +53,7 @@ class _FavoriteTrailerPageState extends State<FavoriteTrailerPage> {
                 width: MediaQuery.of(context).size.width,
                 child: InkWell(
                   onTap: () {
-                    _interstitialAd.show();
-                    _interstitialAd = DisplayAds.createInterstitialAd()..load();
+      
                     Navigator.push(
                       context,
                       MaterialPageRoute(

@@ -1,3 +1,4 @@
+import 'package:CinePrev/services/ads.dart';
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -13,12 +14,13 @@ class _PlayVideoState extends State<PlayVideo> {
   YoutubePlayerController _controller;
   @override
   void initState() {
+    
+    super.initState();
     String videoURL = "https://www.youtube.com/watch?v=${widget.videoId}";
     _controller = YoutubePlayerController(
       initialVideoId: YoutubePlayer.convertUrlToId(videoURL),
     );
-
-    super.initState();
+    DisplayAds.hideBannerAd();
   }
 
   @override

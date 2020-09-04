@@ -86,7 +86,7 @@ class _ItemPopularLoadState extends State<ItemPopularLoad> {
   @override
   void initState() {
     super.initState();
-
+     
     _interstitialAd = DisplayAds.createInterstitialAd()..load();
   }
 

@@ -42,10 +42,7 @@ class _AllRencentsScreenState extends State<AllRencentsScreen> {
   @override
   void initState() {
     super.initState();
-
-    _bannerAd = DisplayAds.createBannerAd()
-      ..load()
-      ..show();
+    _bannerAd = DisplayAds.showBannerAd();
   }
 
   @override

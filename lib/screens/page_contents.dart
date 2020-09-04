@@ -31,10 +31,8 @@ class _ContentPageState extends State<ContentPage> {
     super.initState();
 
     //AdMob Ads
-
-    _bannerAd = DisplayAds.createBannerAd()
-      ..load()
-      ..show();
+  
+    _bannerAd = DisplayAds.showBannerAd();
     _interstitialAd = DisplayAds.createInterstitialAd()..load();
     
   }
@@ -42,7 +40,7 @@ class _ContentPageState extends State<ContentPage> {
   @override
   void dispose() {
     _interstitialAd?.dispose();
-    _bannerAd.dispose();
+    _bannerAd?.dispose();
     super.dispose();
   }
 

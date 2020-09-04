@@ -40,10 +40,9 @@ class _AllPopularScreenState extends State<AllPopularScreen> {
   @override
   void initState() {
     super.initState();
-
-    _bannerAd = DisplayAds.createBannerAd()
-      ..load()
-      ..show();
+   
+    _bannerAd = DisplayAds.showBannerAd();
+      
   }
 
   @override
