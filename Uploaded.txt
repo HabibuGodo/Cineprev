@@ -86,3 +86,10 @@ UPLOADED MOVIES LIST WITH THEIR ID
 577922 : Tenet
 501979 : bill-ted-face-the-music
 520318 : fatima
+340102 : The New Mutants
+724717 : the-2nd
+337167 : fifty-shades-freed
+216015 : fifty-shades-of-grey
+341174 : fifty-shades-darker
+351819 : fifty-shades-of-black
+537915 : after
