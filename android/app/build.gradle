@@ -63,8 +63,8 @@ android {
         applicationId "godo.CinePrev"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 13
-        versionName "2.2" //flutterVersionName
+        versionCode 15
+        versionName "2.3" //flutterVersionName
         // testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
